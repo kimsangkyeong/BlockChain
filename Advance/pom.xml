@@ -41,48 +41,51 @@
 		</dependency>	
 		
 		<!-- Logging -->
+		<!-- SLF4J API는 그대로 사용 (버전은 1.7.x 권장) -->
 		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>${org.slf4j-version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>jcl-over-slf4j</artifactId>
-			<version>${org.slf4j-version}</version>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<version>${org.slf4j-version}</version>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>1.2.27</version>
-			<exclusions>
-				<exclusion>
-					<groupId>javax.mail</groupId>
-					<artifactId>mail</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>javax.jms</groupId>
-					<artifactId>jms</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>com.sun.jdmk</groupId>
-					<artifactId>jmxtools</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>com.sun.jmx</groupId>
-					<artifactId>jmxri</artifactId>
-				</exclusion>
-			</exclusions>
-			<scope>runtime</scope>
+		  <groupId>org.slf4j</groupId>
+		  <artifactId>slf4j-api</artifactId>
+		  <version>${org.slf4j-version}</version>
 		</dependency>
 
+		<!-- (선택) commons-logging → SLF4J 브리지: 기존 그대로 유지 가능 -->
+		<dependency>
+		  <groupId>org.slf4j</groupId>
+		  <artifactId>jcl-over-slf4j</artifactId>
+		  <version>${org.slf4j-version}</version>
+		  <scope>runtime</scope>
+		</dependency>
+
+		<!-- ✅ Log4j2 코어 -->
+		<dependency>
+		  <groupId>org.apache.logging.log4j</groupId>
+		  <artifactId>log4j-core</artifactId>
+		  <version>2.12.4</version>
+		</dependency>
+
+		<!-- ✅ Log4j2 API -->
+		<dependency>
+		  <groupId>org.apache.logging.log4j</groupId>
+		  <artifactId>log4j-api</artifactId>
+		  <version>2.12.4</version>
+		</dependency>
+
+		<!-- ✅ SLF4J → Log4j2 바인딩 (SLF4J 1.7.x용) -->
+		<dependency>
+		  <groupId>org.apache.logging.log4j</groupId>
+		  <artifactId>log4j-slf4j-impl</artifactId>
+		  <version>2.12.4</version>
+		  <scope>runtime</scope>
+		</dependency>
+
+		<!-- ✅ (선택) 기존 코드가 org.apache.log4j.* API를 직접 쓴다면: 1.2 API 브리지 -->
+		<dependency>
+		  <groupId>org.apache.logging.log4j</groupId>
+		  <artifactId>log4j-1.2-api</artifactId>
+		  <version>2.12.4</version>
+		  <scope>runtime</scope>
+		</dependency>
+		
 		<!-- @Inject -->
 		<dependency>
 			<groupId>javax.inject</groupId>
